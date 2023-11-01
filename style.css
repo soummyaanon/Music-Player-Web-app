@@ -1,0 +1,252 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(-45deg, #ebd004, #ea075ec1, #88fa15, #7203f9);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+    height: 100vh;
+}
+
+@keyframes colorChange {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.card {
+    /* Rainbow gradient */
+    background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+    background-size: 200% 200%; /* Adjust background size as needed */
+    
+    /* Apply color-changing animation */
+    animation: colorChange 10s linear infinite;
+
+    color: #fff; /* White text color */
+    border-radius: 20px;
+    filter: drop-shadow(0 4px 6px rgba(240, 238, 238, 0.1));
+    padding: 20px;
+    max-width: 400px;
+    margin: 15% auto; /* Increased margin */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Neon border effect */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent; /* Start with a transparent border */
+    border-radius: 20px;
+    animation: neon-border 1.5s linear infinite alternate, color-cycle 10s linear infinite;
+}
+
+/* Neon border animation */
+@keyframes neon-border {
+    0% {
+        border-width: 6px;
+        border-color: #00faff;
+    }
+    100% {
+        border-width: 6px;
+        border-color: #4dff00;
+    }
+}
+
+/* Gradient color cycle animation */
+@keyframes color-cycle {
+    0% {
+        border-color: #ffe100;
+    }
+    25% {
+        border-color: #22ff00;
+    }
+    50% {
+        border-color: #1e00ff;
+    }
+    75% {
+        border-color: #09f1d2;
+    }
+    100% {
+        border-color: #5100ff;
+    }
+}
+
+/* Add hover effect to neon border */
+.card:hover::before {
+    animation: neon-border 1.5s linear infinite alternate, color-cycle 10s linear infinite;
+}
+
+/* Define styles for the player and its elements */
+.player {
+    height: 95%; /* Reduce the card's height by using a percentage */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease; /* Add transition for scaling effect */
+}
+
+/* Add a simple and fantastic pulse effect to the player on hover */
+.player:hover {
+    transform: scale(1.05); /* Scale up by 5% */
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.track-art {
+    margin: 25px;
+    height: 250px;
+    width: 250px;
+    background-image: url("https://i.pinimg.com/736x/b3/56/fc/b356fc54e7cb6e61abb4f3629fa85425.jpg");
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%; /* Make it perfectly circular */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add hover effects */
+    animation: rotate 10s linear infinite; /* Add a rotation animation */
+}
+
+/* Add a subtle hover effect */
+.track-art:hover {
+    transform: scale(1.05); /* Scale up slightly on hover */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Increase shadow on hover */
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.now-playing {
+    font-size: 1rem;
+}
+
+.track-name {
+    font-size: 3rem;
+}
+
+.track-artist {
+    font-size: 1.5rem;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.playpause-track, .prev-track, .next-track, .shuffle-button, .repeat-button {
+    padding: 25px;
+    opacity: 0.8;
+    transition: opacity 0.2s; /* Smoothly transition the opacity */
+    cursor: pointer; /* Change the mouse cursor to a pointer when hovered over */
+}
+
+/* Neon effect for music progress bar */
+.seek_slider {
+    appearance: none;
+    height: 5px;
+    background: linear-gradient(90deg, #00faff 0%, #ff00f7 25%, #f700ff 50%, #00faff 75%, #00faff 100%);
+    opacity: 0.7;
+    transition: opacity 0.2s; /* Smoothly transition the opacity */
+}
+
+.seek_slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #00faff; /* Neon color for the thumb */
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* Neon effect for volume bar */
+.volume_slider {
+    appearance: none;
+    height: 5px;
+    background: linear-gradient(90deg, #00faff 0%, #ff00f7 25%, #f700ff 50%, #00faff 75%, #00faff 100%);
+    opacity: 0.7;
+    transition: opacity 0.2s; /* Smoothly transition the opacity */
+}
+
+.volume_slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #00faff; /* Neon color for the thumb */
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.current-time, .total-duration {
+    padding: 10px;
+}
+
+i.fa-volume-down, i.fa-volume-up {
+    padding: 10px;
+}
+
+/* Neon effect for buttons on hover */
+.playpause-track:hover, .prev-track:hover, .next-track:hover, .shuffle-button:hover, .repeat-button:hover {
+    opacity: 1.0; /* Change opacity on hover */
+    filter: brightness(1.5); /* Increase brightness on hover */
+}
+
+/* Add a pulsing effect to the play/pause button */
+.playpause-track:hover i.fa-play-circle,
+.playpause-track:hover i.fa-pause-circle {
+    animation: pulse 1s infinite; /* Add pulse animation */
+}
+
+/* Add a rotating effect to the previous and next buttons */
+.prev-track:hover i.fa-step-backward, .next-track:hover i.fa-step-forward {
+    animation: rotate 1s infinite linear; /* Add rotation animation */
+}
+
+/* Neon effect for shuffle and repeat buttons */
+.shuffle-button.active i.fa-random,
+.repeat-button.active i.fa-repeat {
+    color: #00faff; /* Set neon color for active buttons */
+    animation: neon-border 1.5s linear infinite alternate; /* Add neon border animation */
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Rotation animation */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
